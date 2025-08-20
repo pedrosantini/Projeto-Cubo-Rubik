@@ -1,57 +1,29 @@
 import kociemba
 
+# Dictionary used to decode the 
+COLOR_TO_POSITION = {
+    'Y':'U',
+    'R':'F',
+    'W':'D',
+    'G':'R',
+    'B':'L',
+    'O':'B'
+}
 
-'''
+CUBE_SOLVED_SAMPLE = 'YYYYYYYYYGGGGGGGGGRRRRRRRRRWWWWWWWWWBBBBBBBBBOOOOOOOOO' # Example of a cube solved
 
-c = cube.Cube("""GBB
-                WYY
-                WOR
-            RBO GGW GGY OOY
-            YBB RRG RGW GOR
-            YOB RRW OYO GYB
-                WWB
-                WWO
-                RBY""")
+CUBE_SOLVED_FORMAT_DECODED = 'UUUUUUUUURRRRRRRRRFFFFFFFFFDDDDDDDDDLLLLLLLLLBBBBBBBBB' # Example of pattern format
 
-print(c)
+test_cube = 'YYYYYYYYYGGGGGGGGGRORRRRRORWWWWWWWWWBBBBBBBBBOROOOOORO'
+print(test_cube)
 
-s = solve.Solver(c)
-
-s.solve()
-
-print(len(s.moves))
-
-optimize.optimize_moves(s.moves)
-
-print(s.moves)
-print(len(s.moves))
-
-'''
-cube_solved_sample = 'YYYYYYYYYGGGGGGGGGRRRRRRRRRWWWWWWWWWBBBBBBBBBOOOOOOOOO'
-cube_solved_decoded = 'UUUUUUUUURRRRRRRRRFFFFFFFFFDDDDDDDDDLLLLLLLLLBBBBBBBBB'
-
-cube = 'YYYYYYYYYGGGGGGGGGRORRRRRORWWWWWWWWWBBBBBBBBBOROOOOORO'
-print(cube)
-
-decoded = ''
-
-for a in cube:
-    if a == 'Y':
-        decoded += 'U'
-    if a == 'R':
-        decoded += 'F'
-    if a == 'W':
-        decoded += 'D'
-    if a == 'G':
-        decoded += 'R'
-    if a == 'B':
-        decoded += 'L'
-    if a == 'O':
-        decoded += 'B'
+decoded = "".join(COLOR_TO_POSITION[l] for l in test_cube)
 
 print(decoded)
 
-print("-------------- RESULTADO _______")
-print(kociemba.solve(decoded))
+print("-"*10+"RESULT"+"-"*10)
 
-
+solution = kociemba.solve(decoded)
+print(solution)
+with open('results.txt', 'w+', encoding='utf-8') as f:
+    f.write(solution)
