@@ -1,7 +1,4 @@
-from rubik import cube
-from rubik import solve
-from rubik import optimize
-from rubik_solver import utils
+import kociemba
 
 
 '''
@@ -30,17 +27,31 @@ print(s.moves)
 print(len(s.moves))
 
 '''
+cube_solved_sample = 'YYYYYYYYYGGGGGGGGGRRRRRRRRRWWWWWWWWWBBBBBBBBBOOOOOOOOO'
+cube_solved_decoded = 'UUUUUUUUURRRRRRRRRFFFFFFFFFDDDDDDDDDLLLLLLLLLBBBBBBBBB'
 
-cube = """GBB
-                WYY
-                WOR
-            RBO GGW GGY OOY
-            YBB RRG RGW GOR
-            YOB RRW OYO GYB
-                WWB
-                WWO
-                RBY""".strip
-
+cube = 'YYYYYYYYYGGGGGGGGGRORRRRRORWWWWWWWWWBBBBBBBBBOROOOOORO'
 print(cube)
+
+decoded = ''
+
+for a in cube:
+    if a == 'Y':
+        decoded += 'U'
+    if a == 'R':
+        decoded += 'F'
+    if a == 'W':
+        decoded += 'D'
+    if a == 'G':
+        decoded += 'R'
+    if a == 'B':
+        decoded += 'L'
+    if a == 'O':
+        decoded += 'B'
+
+print(decoded)
+
+print("-------------- RESULTADO _______")
+print(kociemba.solve(decoded))
 
 
